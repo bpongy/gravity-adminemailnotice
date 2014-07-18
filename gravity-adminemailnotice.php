@@ -31,6 +31,11 @@ Online: http://www.gnu.org/licenses/gpl.txt
 */
 
 
+function gaen_load_textdomain() {
+	load_plugin_textdomain( 'gaen', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' ); 
+}
+add_action( 'plugins_loaded', 'gaen_load_textdomain' );
+
 
 function gravity_admin_mail_check() {
 	$screen = get_current_screen();
@@ -54,7 +59,7 @@ function gravity_admin_mail_check() {
 		
 		if( count($check_notif) ) {
 			echo '<div class="error">';
-			echo '<p>Attention! </p><ul>';
+			echo '<p>'.__('Warning!', 'gaen').'</p><ul>';
 			foreach ($check_notif as $notif) {
 				echo '<li> - Le formulaire "<strong>'.$notif.'</strong>" a pour destinataire de notification "<strong>'.get_bloginfo("admin_email").'</strong>"</li>';
 			}
